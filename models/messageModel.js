@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const postSchema = new mongoose.Schema({
-  author: {
+const messageSchema = new mongoose.Schema({
+  auteur: {
     type: String,
     required: true,
   },
@@ -9,12 +9,12 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  date: {
+  date_envoi: {
     type: Date,
     default: Date.now,
   },
 });
 
-const PostsModel = mongoose.model("post", postSchema);
+const messageModel = mongoose.model("messsge", messageSchema);
 
-module.exports = PostsModel;
+module.exports = messageModel;

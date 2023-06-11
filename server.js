@@ -1,19 +1,16 @@
 const express = require("express");
+const messageRoutes = require("./routes/messageRoutes");
 const bodyParser = require("body-parser");
-
-// Les routes de posts
-const postsRoutes = require("./routes/postsController");
-
-// Appel a la connexion a la base de donnees
 require("./config/db");
 
 const app = express();
 
-// Les middlewares
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: false }))
+  .use("/messages", messageRoutes);
 
-app.use("/posts", postsRoutes);
-
-// Server
-app.listen(5000);
+app.listen(5500, (erreur) => {
+  if (erreur) throw erreur;
+  console.log("Nous tournons bien sur le port 5500");
+});
